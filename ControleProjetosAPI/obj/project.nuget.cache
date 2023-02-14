@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cj2YMcRXkcqph1n36J0qmICiC22xjnJczb9KdmOJZoFgmgh9BckcxwjyzFOt7YDZ/nkEUU8/L+X4sgVogMxbow==",
+  "dgSpecHash": "OQQZ5vb/NVRDhc7VABPhtRMvMvvRUsHxKBzw1UBzMZJlQ0/vCSYR3OPkwrwQQO5YKuaZcrKCBeQ77EG/N9Ld2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fmasa\\Desktop\\ControleProjetosAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj",
+  "projectFilePath": "C:\\Users\\fmasa\\Desktop\\teste ingacode\\ControleTarefasAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fmasa\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\fmasa\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

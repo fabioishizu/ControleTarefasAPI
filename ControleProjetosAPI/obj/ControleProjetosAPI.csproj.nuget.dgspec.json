@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fmasa\\Desktop\\ControleProjetosAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj": {}
+    "C:\\Users\\fmasa\\Desktop\\teste ingacode\\ControleTarefasAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fmasa\\Desktop\\ControleProjetosAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj": {
+    "C:\\Users\\fmasa\\Desktop\\teste ingacode\\ControleTarefasAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fmasa\\Desktop\\ControleProjetosAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj",
+        "projectUniqueName": "C:\\Users\\fmasa\\Desktop\\teste ingacode\\ControleTarefasAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj",
         "projectName": "ControleProjetosAPI",
-        "projectPath": "C:\\Users\\fmasa\\Desktop\\ControleProjetosAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj",
+        "projectPath": "C:\\Users\\fmasa\\Desktop\\teste ingacode\\ControleTarefasAPI\\ControleProjetosAPI\\ControleProjetosAPI.csproj",
         "packagesPath": "C:\\Users\\fmasa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fmasa\\Desktop\\ControleProjetosAPI\\ControleProjetosAPI\\obj\\",
+        "outputPath": "C:\\Users\\fmasa\\Desktop\\teste ingacode\\ControleTarefasAPI\\ControleProjetosAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fmasa\\AppData\\Roaming\\NuGet\\NuGet.Config",
