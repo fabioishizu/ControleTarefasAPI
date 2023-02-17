@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ControleProjetosAPI.Data;
-using ControleProjetosAPI.Data.Dto;
+using ControleProjetosAPI.Data.Dto.Projetos;
 using ControleProjetosAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +53,7 @@ public class ProjetoController : ControllerBase
     {
         try
         {
-            var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.Id == id);
+            var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.ProjectId == id);
             if(projeto == null) return NotFound();
 
             var projetoDto = _mapper.Map<ReadProjetoDto>(projeto);
@@ -68,7 +68,7 @@ public class ProjetoController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeletaProjeto(int id)
     {
-        var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.Id == id);
+        var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.ProjectId == id);
         if (projeto == null) return NotFound();
 
         _context.Projetos.Remove(projeto);
@@ -79,7 +79,7 @@ public class ProjetoController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult AtualizaProjeto(int id, [FromBody] UpdateProjetoDto projetoDto)
     {
-        var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.Id == id);
+        var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.ProjectId == id);
         if(projeto == null) return NotFound();
 
         _mapper.Map(projetoDto, projeto);

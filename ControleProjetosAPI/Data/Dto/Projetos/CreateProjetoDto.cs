@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ControleProjetosAPI.Data.Dto;
+namespace ControleProjetosAPI.Data.Dto.Projetos;
 
 public class CreateProjetoDto
 {

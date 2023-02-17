@@ -3,6 +3,7 @@ using System;
 using ControleProjetosAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleProjetosAPI.Migrations
 {
     [DbContext(typeof(ProjetoContext))]
-    partial class ProjetoContextModelSnapshot : ModelSnapshot
+    [Migration("20230216221208_CriadaTabelaDeTasks")]
+    partial class CriadaTabelaDeTasks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +24,7 @@ namespace ControleProjetosAPI.Migrations
 
             modelBuilder.Entity("ControleProjetosAPI.Model.Projeto", b =>
                 {
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -39,7 +42,7 @@ namespace ControleProjetosAPI.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ProjectId");
+                    b.HasKey("Id");
 
                     b.ToTable("Projetos");
                 });
@@ -60,20 +63,23 @@ namespace ControleProjetosAPI.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("IdProjeto")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("ProjetoId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("projetoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjetoId");
+                    b.HasIndex("projetoId");
 
                     b.ToTable("Tasks");
                 });
@@ -81,17 +87,12 @@ namespace ControleProjetosAPI.Migrations
             modelBuilder.Entity("ControleProjetosAPI.Model.Tasks", b =>
                 {
                     b.HasOne("ControleProjetosAPI.Model.Projeto", "projeto")
-                        .WithMany("Tasks")
-                        .HasForeignKey("ProjetoId")
+                        .WithMany()
+                        .HasForeignKey("projetoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("projeto");
-                });
-
-            modelBuilder.Entity("ControleProjetosAPI.Model.Projeto", b =>
-                {
-                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }
