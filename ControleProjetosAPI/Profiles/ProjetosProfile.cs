@@ -7,7 +7,6 @@ public class ProjetosProfile : AutoMapper.Profile
 {
 	public ProjetosProfile()
 	{
-
 		CreateMap<CreateProjetoDto, Projeto>();
         CreateMap<UpdateProjetoDto, Projeto>();
         CreateMap<DeleteProjetoDto, Projeto>();

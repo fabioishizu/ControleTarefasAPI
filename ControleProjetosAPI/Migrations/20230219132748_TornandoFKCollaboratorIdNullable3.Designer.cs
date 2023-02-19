@@ -3,6 +3,7 @@ using System;
 using ControleProjetosAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleProjetosAPI.Migrations
 {
     [DbContext(typeof(ProjetoContext))]
-    partial class ProjetoContextModelSnapshot : ModelSnapshot
+    [Migration("20230219132748_TornandoFKCollaboratorIdNullable3")]
+    partial class TornandoFKCollaboratorIdNullable3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +127,7 @@ namespace ControleProjetosAPI.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("TasksId")
+                    b.Property<int>("TaskId")
                         .HasColumnType("int");
 
                     b.Property<int>("TimeZoneId")
@@ -133,11 +136,14 @@ namespace ControleProjetosAPI.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("tasksId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CollaboratorsId");
 
-                    b.HasIndex("TasksId");
+                    b.HasIndex("tasksId");
 
                     b.ToTable("TimeTrackers");
                 });
@@ -161,7 +167,7 @@ namespace ControleProjetosAPI.Migrations
 
                     b.HasOne("ControleProjetosAPI.Model.Tasks", "tasks")
                         .WithMany()
-                        .HasForeignKey("TasksId")
+                        .HasForeignKey("tasksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
