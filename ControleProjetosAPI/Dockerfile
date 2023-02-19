@@ -1,25 +1,17 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["ControleProjetosAPI/ControleProjetosAPI.csproj", "ControleProjetosAPI/"]
-RUN dotnet restore "ControleProjetosAPI/ControleProjetosAPI.csproj"
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /source
 COPY . .
-WORKDIR "/src/ControleProjetosAPI"
-RUN dotnet build "ControleProjetosAPI.csproj" -c Release -o /app/build
+RUN dotnet restore "./ControleProjetosAPI/ControleProjetosAPI.csproj"
+RUN dotnet publish "./ControleProjetosAPI/ControleProjetosAPI.csproj" -c release -o /app --no-restore
 
-FROM build AS publish
-RUN dotnet publish "ControleProjetosAPI.csproj" -c Release -o /app/publish
-
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from-build /app ./
+
+EXPOSE 5000
+
 ENTRYPOINT ["dotnet", "ControleProjetosAPI.dll"]
+
+##docker build --rm -t controle-projetos/ControleProjetosAPI: latest .
+##docker image ls | grep ControleProjetosAPI
+##docker run -p 5000:5000 -p 5001:5001 -e ASPNETCORE_HTTP_PORT=https://+:5001 -e ASPNETCORE_URLS=http://+:5000 controle-projetos/ControleProjetosAPI

@@ -2,6 +2,7 @@
 using ControleProjetosAPI.Data;
 using ControleProjetosAPI.Data.Dto.Users;
 using ControleProjetosAPI.Model;
+using ControleProjetosAPI.Utils.CryptoSharp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleUserssAPI.Controllers;
@@ -25,6 +26,7 @@ public class UsersController : ControllerBase
         try
         {
             Users Users = _mapper.Map<Users>(UsersDto);
+            Users.Password = CryptoSharp.Codifica(UsersDto.Password);
             _context.Users.Add(Users);
             _context.SaveChanges();
             return Ok(Users);

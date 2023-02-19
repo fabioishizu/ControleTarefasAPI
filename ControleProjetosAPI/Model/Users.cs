@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ControleProjetosAPI.Utils.CryptoSharp;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleProjetosAPI.Model;
 

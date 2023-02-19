@@ -1,6 +1,7 @@
 ﻿using ControleProjetosAPI.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ControleProjetosAPI.Utils.CryptoSharp;
 
 namespace ControleProjetosAPI.Data.Dto.Users;
 

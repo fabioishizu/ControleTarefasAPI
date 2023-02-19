@@ -1,4 +1,4 @@
-﻿using ControleProjetosAPI.Model;
+﻿using ControleProjetosAPI.Utils.CryptoSharp;
 using System.ComponentModel.DataAnnotations;
 
 namespace ControleProjetosAPI.Data.Dto.Users;
