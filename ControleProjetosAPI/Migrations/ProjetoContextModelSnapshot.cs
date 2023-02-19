@@ -142,6 +142,40 @@ namespace ControleProjetosAPI.Migrations
                     b.ToTable("TimeTrackers");
                 });
 
+            modelBuilder.Entity("ControleProjetosAPI.Model.Users", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CollaboratorsId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CollaboratorsId");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("ControleProjetosAPI.Model.Tasks", b =>
                 {
                     b.HasOne("ControleProjetosAPI.Model.Projeto", "projeto")
@@ -168,6 +202,17 @@ namespace ControleProjetosAPI.Migrations
                     b.Navigation("collaborators");
 
                     b.Navigation("tasks");
+                });
+
+            modelBuilder.Entity("ControleProjetosAPI.Model.Users", b =>
+                {
+                    b.HasOne("ControleProjetosAPI.Model.Collaborators", "collaborators")
+                        .WithMany()
+                        .HasForeignKey("CollaboratorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("collaborators");
                 });
 
             modelBuilder.Entity("ControleProjetosAPI.Model.Projeto", b =>

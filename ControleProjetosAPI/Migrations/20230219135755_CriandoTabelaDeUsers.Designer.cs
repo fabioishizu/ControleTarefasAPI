@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleProjetosAPI.Migrations
 {
     [DbContext(typeof(ProjetoContext))]
-    [Migration("20230218223402_CriadaTabelasDeTimeTrackersECollaborators")]
-    partial class CriadaTabelasDeTimeTrackersECollaborators
+    [Migration("20230219135755_CriandoTabelaDeUsers")]
+    partial class CriandoTabelaDeUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,7 +112,7 @@ namespace ControleProjetosAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CollaboratorId")
+                    b.Property<int?>("CollaboratorsId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -127,7 +127,7 @@ namespace ControleProjetosAPI.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("TaskId")
+                    b.Property<int>("TasksId")
                         .HasColumnType("int");
 
                     b.Property<int>("TimeZoneId")
@@ -136,19 +136,47 @@ namespace ControleProjetosAPI.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("collaboratorsId")
+                    b.HasKey("Id");
+
+                    b.HasIndex("CollaboratorsId");
+
+                    b.HasIndex("TasksId");
+
+                    b.ToTable("TimeTrackers");
+                });
+
+            modelBuilder.Entity("ControleProjetosAPI.Model.Users", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("tasksId")
+                    b.Property<int>("CollaboratorsId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("collaboratorsId");
+                    b.HasIndex("CollaboratorsId");
 
-                    b.HasIndex("tasksId");
-
-                    b.ToTable("TimeTrackers");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ControleProjetosAPI.Model.Tasks", b =>
@@ -166,19 +194,28 @@ namespace ControleProjetosAPI.Migrations
                 {
                     b.HasOne("ControleProjetosAPI.Model.Collaborators", "collaborators")
                         .WithMany()
-                        .HasForeignKey("collaboratorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CollaboratorsId");
 
                     b.HasOne("ControleProjetosAPI.Model.Tasks", "tasks")
                         .WithMany()
-                        .HasForeignKey("tasksId")
+                        .HasForeignKey("TasksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("collaborators");
 
                     b.Navigation("tasks");
+                });
+
+            modelBuilder.Entity("ControleProjetosAPI.Model.Users", b =>
+                {
+                    b.HasOne("ControleProjetosAPI.Model.Collaborators", "collaborators")
+                        .WithMany()
+                        .HasForeignKey("CollaboratorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("collaborators");
                 });
 
             modelBuilder.Entity("ControleProjetosAPI.Model.Projeto", b =>
