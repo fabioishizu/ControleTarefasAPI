@@ -179,7 +179,7 @@ namespace ControleProjetosAPI.Migrations
             modelBuilder.Entity("ControleProjetosAPI.Model.Tasks", b =>
                 {
                     b.HasOne("ControleProjetosAPI.Model.Projeto", "projeto")
-                        .WithMany("Tasks")
+                        .WithMany()
                         .HasForeignKey("ProjetoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -213,11 +213,6 @@ namespace ControleProjetosAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("collaborators");
-                });
-
-            modelBuilder.Entity("ControleProjetosAPI.Model.Projeto", b =>
-                {
-                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

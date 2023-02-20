@@ -3,6 +3,7 @@ using ControleProjetosAPI.Data;
 using ControleProjetosAPI.Data.Dto.TimeTracker;
 using ControleProjetosAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using ControleProjetosAPI.Data.Bll.TimeTracker;
 
 namespace ControleTimeTrackersAPI.Controllers;
 
@@ -25,6 +26,7 @@ public class TimeTrackerController : ControllerBase
         try
         {
             TimeTracker TimeTracker = _mapper.Map<TimeTracker>(TimeTrackerDto);
+            if (!TimeTrackerBll.validaDateTime(TimeTracker.StartDate, TimeTracker.EndDate)) throw new BadHttpRequestException("Data de início maior que a de fim.");
             _context.TimeTrackers.Add(TimeTracker);
             _context.SaveChanges();
             return Ok(TimeTracker);
