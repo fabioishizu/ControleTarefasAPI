@@ -46,7 +46,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("login"), AllowAnonymous]
-    public async Task<ActionResult<string>> Login(LoginUsersDto loginUserDto)
+    public async Task<ActionResult<LoginUsersDto>> Login(LoginUsersDto loginUserDto)
     {
         var userMatch= _mapper.Map<List<ReadUsersDto>>(_context.Users)
             .FirstOrDefault(user => user.UserName == loginUserDto.UserName && CryptoSharp.Compara(loginUserDto.Password,user.Password));
@@ -54,8 +54,9 @@ public class UsersController : ControllerBase
         if (userMatch == null) return BadRequest("User not found. :(");
 
         string token = CreateToken(loginUserDto);
+        loginUserDto.Token = token;
 
-        return Ok(token);
+        return Ok(loginUserDto);
     }
 
     private string CreateToken(LoginUsersDto user)

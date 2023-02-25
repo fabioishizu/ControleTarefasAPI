@@ -4,9 +4,11 @@ using ControleProjetosAPI.Data.Dto.Projetos;
 using ControleProjetosAPI.Data.Dto.Collaborator;
 using ControleProjetosAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ControleColaboradorsAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ColaboradorController : ControllerBase

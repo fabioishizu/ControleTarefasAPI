@@ -4,9 +4,11 @@ using ControleProjetosAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 using ControleProjetosAPI.Data.Dto.Tasks;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ControleTasksAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class TasksController : ControllerBase

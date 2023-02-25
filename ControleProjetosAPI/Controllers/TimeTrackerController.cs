@@ -4,9 +4,11 @@ using ControleProjetosAPI.Data.Dto.TimeTracker;
 using ControleProjetosAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 using ControleProjetosAPI.Data.Bll.TimeTracker;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ControleTimeTrackersAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class TimeTrackerController : ControllerBase

@@ -2,10 +2,12 @@
 using ControleProjetosAPI.Data;
 using ControleProjetosAPI.Data.Dto.Projetos;
 using ControleProjetosAPI.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleProjetosAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ProjetoController : ControllerBase
