@@ -42,7 +42,7 @@ public class ProjetoController : ControllerBase
     {
         try
         {
-            return _mapper.Map<List<ReadProjetoDto>>(_context.Projetos.Skip(skip).Take(take));
+            return _mapper.Map<List<ReadProjetoDto>>(_context.Projetos.Where(projeto => projeto.DeletedAt == null).Skip(skip).Take(take));
         }
         catch (Exception)
         {
@@ -73,11 +73,12 @@ public class ProjetoController : ControllerBase
         var projeto = _context.Projetos.FirstOrDefault(projeto => projeto.ProjectId == id);
         if (projeto == null) return NotFound();
 
-        _context.Projetos.Remove(projeto);
+        projeto.DeletedAt = DateTime.Now;
         _context.SaveChanges();
         return NoContent();
     }
 
+    
     [HttpPut("{id}")]
     public IActionResult AtualizaProjeto(int id, [FromBody] UpdateProjetoDto projetoDto)
     {
