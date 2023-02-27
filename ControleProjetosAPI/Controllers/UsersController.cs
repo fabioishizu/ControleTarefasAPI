@@ -28,7 +28,7 @@ public class UsersController : ControllerBase
         _config = configuration;
     }
 
-    [HttpPost, AllowAnonymous]
+    [HttpPost]
     public async Task<ActionResult> AddUser([FromBody] CreateUsersDto UsersDto)
     {
         try
